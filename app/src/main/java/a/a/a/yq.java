@@ -818,7 +818,7 @@ public class yq {
                     CommandBlock.applyCommands("colors.xml", colorsFileBuilder.toCode())));
 
             XmlBuilderHelper stylesFileBuilder = new XmlBuilderHelper();
-            stylesFileBuilder.addStyle("AppTheme", "Theme.Material3.Light.NoActionBar" + (useNewMaterialComponentsTheme ? "" : ".Bridge"));
+            stylesFileBuilder.addStyle("AppTheme", "Theme.Material3.Light.NoActionBar" + (useNewMaterialComponentsTheme ? "" : ""));
             stylesFileBuilder.addItemToStyle("AppTheme", "colorPrimary", "@color/colorPrimary");
             stylesFileBuilder.addItemToStyle("AppTheme", "colorPrimaryDark", "@color/colorPrimaryDark");
             stylesFileBuilder.addItemToStyle("AppTheme", "colorAccent", "@color/colorAccent");
@@ -833,7 +833,7 @@ public class yq {
                     CommandBlock.applyCommands("styles.xml", stylesFileBuilder.toCode())));
         } else {
             XmlBuilderHelper stylesFileBuilder = new XmlBuilderHelper();
-            stylesFileBuilder.addStyle("AppTheme", "@android:style/Theme.Material3.Light.DarkActionBar");
+            stylesFileBuilder.addStyle("AppTheme", "@android:style/Theme.Material.Light.DarkActionBar");
             stylesFileBuilder.addItemToStyle("AppTheme", "android:colorPrimary", "@color/colorPrimary");
             stylesFileBuilder.addItemToStyle("AppTheme", "android:colorPrimaryDark", "@color/colorPrimaryDark");
             stylesFileBuilder.addItemToStyle("AppTheme", "android:colorAccent", "@color/colorAccent");
