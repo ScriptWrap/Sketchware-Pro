@@ -484,4 +484,5 @@ public class MainActivity extends BasePermissionAppCompatActivity {
 		.commit();
 	
     }
+       }
 }
