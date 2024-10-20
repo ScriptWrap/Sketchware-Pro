@@ -197,10 +197,12 @@ public class MainActivity extends BasePermissionAppCompatActivity {
             public void onDrawerStateChanged(int newState) {
             }
         });
+         Home();
+         binding.createNewProject.show();
 
-        binding.viewPager.setOffscreenPageLimit(2);
+       // binding.viewPager.setOffscreenPageLimit(2);
 
-        fragmentsAdapter = new FragmentsAdapter(this);
+        /*fragmentsAdapter = new FragmentsAdapter(this);
         binding.viewPager.setAdapter(fragmentsAdapter);
 
         String[] tabTitles = new String[]{
@@ -221,7 +223,25 @@ public class MainActivity extends BasePermissionAppCompatActivity {
                     binding.createNewProject.hide();
                 }
             }
-        });
+        });*/
+        Binding.bottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() { 
+            @Override 
+	            public boolean onNavigationItemSelected(@NonNull MenuItem item) { 
+	                Fragment fragment = null; 
+                switch (item.getItemId()) { 
+	                    case R.id.home: 
+	                        Home();
+                            binding.createNewProject.show();
+                        break; 
+	                    case R.id.store: 
+	                        Store();
+                            binding.createNewProject.hide();
+                         break; 
+	                } 
+	                return Home();
+	            } 
+	        }); 
+	    } 
 
         boolean hasStorageAccess = isStoragePermissionGranted();
         if (!hasStorageAccess) {
@@ -447,7 +467,7 @@ public class MainActivity extends BasePermissionAppCompatActivity {
 
     // ----------------- Inner Classes ----------------- //
 
-    public static class FragmentsAdapter extends FragmentStateAdapter {
+   /* public static class FragmentsAdapter extends FragmentStateAdapter {
 
         private final ProjectsFragment projectsFragment;
         private final ProjectsStoreFragment projectsStoreFragment;
@@ -480,5 +500,20 @@ public class MainActivity extends BasePermissionAppCompatActivity {
         public ProjectsStoreFragment getProjectsStoreFragment() {
             return projectsStoreFragment;
         }
-    }
+    }*/
+    //--------------New Class-----------------//
+    public void Home() {
+		Fragment fragment = new ProjectsFragment();
+		getActivity().getSupportFragmentManager()
+		.beginTransaction()
+		.replace(R.id.framer, fragment)
+		.commit();
+	}
+    public void Store() {
+		Fragment fragment = new ProjectsStoreFragment();
+		getActivity().getSupportFragmentManager()
+		.beginTransaction()
+		.replace(R.id.framer, fragment)
+		.commit();
+	}
 }

@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="bottom">
+
+    
+        <item
+            android:icon="@drawable/ic_folder_24"
+            android:id="@+id/home"
+            android:title="Projects"
+            app:contentDescription="Settings" />
+
+    
+        <item
+           android:icon="@drawable/ic_folder_24"
+           android:id="@+id/store"
+           android:title="Store"/>
+           
+           
+           
+
+</menu>
