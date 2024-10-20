@@ -467,7 +467,40 @@ public class MainActivity extends BasePermissionAppCompatActivity {
 
     // ----------------- Inner Classes ----------------- //
 
-   
+   public static class FragmentsAdapter extends FragmentStateAdapter {
+
+        private final ProjectsFragment projectsFragment;
+        private final ProjectsStoreFragment projectsStoreFragment;
+
+        public FragmentsAdapter(@NonNull FragmentActivity fragmentActivity) {
+            super(fragmentActivity);
+            projectsFragment = new ProjectsFragment();
+            projectsStoreFragment = new ProjectsStoreFragment();
+        }
+
+        @NonNull
+        @Override
+        public Fragment createFragment(int position) {
+            if (position == 1) {
+                return projectsStoreFragment;
+            } else {
+                return projectsFragment;
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+            return 2;
+        }
+
+        public ProjectsFragment getProjectsFragment() {
+            return projectsFragment;
+        }
+
+        public ProjectsStoreFragment getProjectsStoreFragment() {
+            return projectsStoreFragment;
+        }
+       }
     //--------------New Class-----------------//
     public void Home() {
 		Fragment fragment = new ProjectsFragment();
@@ -484,6 +517,6 @@ public class MainActivity extends BasePermissionAppCompatActivity {
 		.commit();
 	
     }
-       }
-       });
+
+   }
 }
