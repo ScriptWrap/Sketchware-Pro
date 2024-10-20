@@ -485,4 +485,5 @@ public class MainActivity extends BasePermissionAppCompatActivity {
 	
     }
        }
+       });
 }
