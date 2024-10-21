@@ -209,11 +209,12 @@ public class MainActivity extends BasePermissionAppCompatActivity {
 AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_store)
                 .build();
-   NavController navController = Navigation.findNavController(this, R.id.frag);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.bottom, navController);
+   
+        
         NavHostFragment navHostFragment =
     (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.frag);
+    NavController navController = navHostFragment.getNavController();
+    NavigationUI.setupWithNavController(binding.bottom, navController);
 
 
        /* binding.bottom.setOnItemSelectedListener(item -> {
