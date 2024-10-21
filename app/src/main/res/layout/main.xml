@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:layout_weight="1"   
+        android:layout_weight="1"   
          app:navGraph="@navigation/sketch_nav"/>
             <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
