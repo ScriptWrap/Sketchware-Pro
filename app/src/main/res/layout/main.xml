@@ -60,20 +60,20 @@
           android:orientation="vertical"
           app:layout_behavior="@string/appbar_scrolling_view_behavior"
           >
-       <!--  <FrameLayout
+       <FrameLayout
            android:id="@+id/framer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             
-            android:layout_weight="1"
-            />-->
-            <fragment
+            android:layout_weight="1">
+            
+            <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frag"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"  
-        app:navGraph="@navigation/sketch_nav"/>
+        app:navGraph="@navigation/sketch_nav"/></FrameLayout>
             <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -131,9 +131,15 @@ dependencies {
 
     implementation "de.hdodenhof:circleimageview:3.1.0"
     implementation "com.github.angads25:filepicker:1.1.1"
-    implementation "androidx.navigation:navigation-fragment:2.5.3"
+    implementation "androidx.navigation:navigation-fragment:2.8.3"
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1"
-    implementation "androidx.navigation:navigation-ui:2.5.3"
+    implementation "androidx.navigation:navigation-ui:2.8.3"
+
+  // Feature module support for Fragments
+  implementation "androidx.navigation:navigation-dynamic-features-fragment:2.8.3"
+
+  // Testing Navigation
+  androidTestImplementation "androidx.navigation:navigation-testing:2.8.3"
     implementation "androidx.lifecycle:lifecycle-livedata:2.5.1"
 
     minApi26Implementation "com.android.tools.build:bundletool:1.15.6"
