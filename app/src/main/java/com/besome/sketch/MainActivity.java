@@ -200,30 +200,7 @@ public class MainActivity extends BasePermissionAppCompatActivity {
          Home();
          binding.createNewProject.show();
 
-       // binding.viewPager.setOffscreenPageLimit(2);
 
-        /*fragmentsAdapter = new FragmentsAdapter(this);
-        binding.viewPager.setAdapter(fragmentsAdapter);
-
-        String[] tabTitles = new String[]{
-                getString(R.string.main_tab_title_myproject),
-                getString(R.string.main_tab_title_projects_store)
-        };
-
-        new TabLayoutMediator(binding.tabLayout, binding.viewPager,
-                (tab, position) -> tab.setText(tabTitles[position])
-        ).attach();
-
-        binding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                if (position == 0) {
-                    binding.createNewProject.show();
-                } else {
-                    binding.createNewProject.hide();
-                }
-            }
-        });*/
         Binding.bottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() { 
             @Override 
 	            public boolean onNavigationItemSelected(@NonNull MenuItem item) { 
@@ -241,7 +218,7 @@ public class MainActivity extends BasePermissionAppCompatActivity {
 	                return Home();
 	            } 
 	        }); 
-	    } 
+	    
 
         boolean hasStorageAccess = isStoragePermissionGranted();
         if (!hasStorageAccess) {
@@ -500,7 +477,7 @@ public class MainActivity extends BasePermissionAppCompatActivity {
         public ProjectsStoreFragment getProjectsStoreFragment() {
             return projectsStoreFragment;
         }
-       }
+   }
     //--------------New Class-----------------//
     public void Home() {
 		Fragment fragment = new ProjectsFragment();
@@ -518,5 +495,5 @@ public class MainActivity extends BasePermissionAppCompatActivity {
 	
     }
 
-   }
+   
 }
