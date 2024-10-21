@@ -131,6 +131,10 @@ dependencies {
 
     implementation "de.hdodenhof:circleimageview:3.1.0"
     implementation "com.github.angads25:filepicker:1.1.1"
+    implementation "androidx.navigation:navigation-fragment:2.5.3"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1"
+    implementation "androidx.navigation:navigation-ui:2.5.3"
+    implementation "androidx.lifecycle:lifecycle-livedata:2.5.1"
 
     minApi26Implementation "com.android.tools.build:bundletool:1.15.6"
     //noinspection GradleDependency copied from above dependency for not just runtime access
@@ -153,6 +157,7 @@ dependencies {
     minApi26Implementation files('libs/proguard-base-7.2.2.jar')
     minApi26Implementation 'com.guardsquare:proguard-core:9.0.2'
     minApi26Implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20'
+    
 
     //noinspection GradleDependency
     minApi21Implementation "org.eclipse.jdt:ecj:3.13.0"
