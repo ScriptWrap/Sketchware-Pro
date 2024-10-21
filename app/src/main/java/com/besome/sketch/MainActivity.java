@@ -217,19 +217,19 @@ AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
     NavigationUI.setupWithNavController(binding.bottom, navController);
 
 
-       /* binding.bottom.setOnItemSelectedListener(item -> {
+       binding.bottom.setOnItemSelectedListener(item -> {
                     Fragment fragment = null; 
                 switch (item.getItemId()) { 
 	                    case R.id.home: 
-	                        Home();
+	                        Navigation.findNavController(frag).navigate(R.id.navigation_home);
                             binding.createNewProject.show();
                         break; 
 	                    case R.id.store: 
-	                        Store();
+	                        Navigation.findNavController(frag).navigate(R.id.navigation_store);
                             binding.createNewProject.hide();
                          break; 
 	                }
-	                return Home();
+	                return true;
 	            
               });*/
 	
