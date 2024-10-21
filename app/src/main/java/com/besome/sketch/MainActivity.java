@@ -201,10 +201,8 @@ public class MainActivity extends BasePermissionAppCompatActivity {
          binding.createNewProject.show();
 
 
-        Binding.bottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() { 
-            @Override 
-	            public boolean onNavigationItemSelected(@NonNull MenuItem item) { 
-	                Fragment fragment = null; 
+        binding.bottomNav.setOnItemSelectedListener(item -> {
+                    Fragment fragment = null; 
                 switch (item.getItemId()) { 
 	                    case R.id.home: 
 	                        Home();
@@ -214,10 +212,12 @@ public class MainActivity extends BasePermissionAppCompatActivity {
 	                        Store();
                             binding.createNewProject.hide();
                          break; 
-	                } 
-	                return Home();
-	            } 
-	        }); 
+	                }
+	                return true;
+	            
+              });
+	
+	
 	    
 
         boolean hasStorageAccess = isStoragePermissionGranted();
@@ -481,14 +481,14 @@ public class MainActivity extends BasePermissionAppCompatActivity {
     //--------------New Class-----------------//
     public void Home() {
 		Fragment fragment = new ProjectsFragment();
-		getActivity().getSupportFragmentManager()
+		getApplicationContext().getSupportFragmentManager()
 		.beginTransaction()
 		.replace(R.id.framer, fragment)
 		.commit();
 	}
     public void Store() {
 		Fragment fragment = new ProjectsStoreFragment();
-		getActivity().getSupportFragmentManager()
+		getApplicationContext().getSupportFragmentManager()
 		.beginTransaction()
 		.replace(R.id.framer, fragment)
 		.commit();
