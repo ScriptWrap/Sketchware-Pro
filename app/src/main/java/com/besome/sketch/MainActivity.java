@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -483,14 +484,17 @@ public class MainActivity extends BasePermissionAppCompatActivity {
     public void Home() {
 		Fragment fragment = new ProjectsFragment();
 		FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction(transaction -> transaction.replace(R.id.framer, fragment))
-        .commit();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.framer, fragment);
+        transaction.commit();
 	}
     public void Store() {
 		Fragment fragment = new ProjectsStoreFragment();
 		FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction(transaction -> transaction.replace(R.id.framer, fragment))
-        .commit();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.framer, fragment);
+        transaction.commit();
+
 	
     }
 
