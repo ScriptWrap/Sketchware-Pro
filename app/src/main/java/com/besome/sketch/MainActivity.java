@@ -215,7 +215,7 @@ public class MainActivity extends BasePermissionAppCompatActivity {
                             binding.createNewProject.hide();
                          break; 
 	                }
-	                return true;
+	                return Home();
 	            
               });
 	
