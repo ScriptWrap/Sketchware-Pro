@@ -43,6 +43,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
 import a.a.a.DB;
 import a.a.a.GB;
 import a.a.a.aB;
@@ -199,11 +204,15 @@ public class MainActivity extends BasePermissionAppCompatActivity {
             public void onDrawerStateChanged(int newState) {
             }
         });
-         Home();
-         binding.createNewProject.show();
+         
+AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_home, R.id.navigation_store)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.frag);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(binding.bottom, navController);
 
-
-        binding.bottom.setOnItemSelectedListener(item -> {
+       /* binding.bottom.setOnItemSelectedListener(item -> {
                     Fragment fragment = null; 
                 switch (item.getItemId()) { 
 	                    case R.id.home: 
@@ -217,7 +226,7 @@ public class MainActivity extends BasePermissionAppCompatActivity {
 	                }
 	                return Home();
 	            
-              });
+              });*/
 	
 	
 	    
@@ -481,22 +490,7 @@ public class MainActivity extends BasePermissionAppCompatActivity {
         }
    }
     //--------------New Class-----------------//
-    public void Home() {
-		Fragment fragment = new ProjectsFragment();
-		FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.framer, fragment);
-        transaction.commit();
-	}
-    public void Store() {
-		Fragment fragment = new ProjectsStoreFragment();
-		FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.framer, fragment);
-        transaction.commit();
-
-	
-    }
+    
 
    
 }
