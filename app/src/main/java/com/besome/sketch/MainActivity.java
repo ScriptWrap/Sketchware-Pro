@@ -221,11 +221,11 @@ AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                     Fragment fragment = null; 
                 switch (item.getItemId()) { 
 	                    case R.id.home: 
-	                        Navigation.findNavController(frag).navigate(R.id.navigation_home);
+	                        Navigation.findNavController(binding.frag).navigate(R.id.navigation_home);
                             binding.createNewProject.show();
                         break; 
 	                    case R.id.store: 
-	                        Navigation.findNavController(frag).navigate(R.id.navigation_store);
+	                        Navigation.findNavController(binding.frag).navigate(R.id.navigation_store);
                             binding.createNewProject.hide();
                          break; 
 	                }
