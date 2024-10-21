@@ -231,7 +231,7 @@ AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
 	                }
 	                return true;
 	            
-              });*/
+              });
 	
 	
 	    
