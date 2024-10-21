@@ -47,7 +47,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import ndroidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import a.a.a.DB;
 import a.a.a.GB;
@@ -209,12 +209,12 @@ public class MainActivity extends BasePermissionAppCompatActivity {
 AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_store)
                 .build();
-  /*      NavController navController = Navigation.findNavController(this, R.id.frag);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);*/
+   NavController navController = Navigation.findNavController(this, R.id.frag);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.bottom, navController);
         NavHostFragment navHostFragment =
     (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.frag);
-     NavController navController = navHostFragment.getNavController();
+
 
        /* binding.bottom.setOnItemSelectedListener(item -> {
                     Fragment fragment = null; 
