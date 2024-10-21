@@ -54,8 +54,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
-          
-           <FrameLayout
+          <LinearLayout 
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
+         <FrameLayout
            android:id="@+id/framer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -66,7 +69,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/bottom"
             app:menu="@menu/proj_menu"/>
-            
+            </LinearLayout>            
             
  
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
