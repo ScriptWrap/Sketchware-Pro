@@ -201,7 +201,7 @@ public class MainActivity extends BasePermissionAppCompatActivity {
          binding.createNewProject.show();
 
 
-        binding.bottomNav.setOnItemSelectedListener(item -> {
+        binding.bottom.setOnItemSelectedListener(item -> {
                     Fragment fragment = null; 
                 switch (item.getItemId()) { 
 	                    case R.id.home: 
@@ -481,17 +481,15 @@ public class MainActivity extends BasePermissionAppCompatActivity {
     //--------------New Class-----------------//
     public void Home() {
 		Fragment fragment = new ProjectsFragment();
-		getApplicationContext().getSupportFragmentManager()
-		.beginTransaction()
-		.replace(R.id.framer, fragment)
-		.commit();
+		FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction(transaction -> transaction.replace(R.id.framer, fragment))
+        .commit();
 	}
     public void Store() {
 		Fragment fragment = new ProjectsStoreFragment();
-		getApplicationContext().getSupportFragmentManager()
-		.beginTransaction()
-		.replace(R.id.framer, fragment)
-		.commit();
+		FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction(transaction -> transaction.replace(R.id.framer, fragment))
+        .commit();
 	
     }
 
