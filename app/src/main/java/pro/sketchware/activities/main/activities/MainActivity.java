@@ -223,7 +223,6 @@ AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
     NavigationUI.setupWithNavController(binding.bottom, navController);
 
 
-<<<<<<< HEAD:app/src/main/java/com/besome/sketch/MainActivity.java
        binding.bottom.setOnItemSelectedListener(item -> {
                     Fragment fragment = null; 
                 switch (item.getItemId()) { 
@@ -242,7 +241,7 @@ AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
 	
 	
 	    
-=======
+/*
         fragmentsAdapter = new FragmentsAdapter(this);
         binding.viewPager.setAdapter(fragmentsAdapter);
         binding.viewPager.setUserInputEnabled(false);
@@ -266,7 +265,7 @@ AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 }
             }
         });
->>>>>>> af2c490a8c789cb2c10d5d612f9aa1a8eb1bb431:app/src/main/java/pro/sketchware/activities/main/activities/MainActivity.java
+>>>>>>> af2c490a8c789cb2c10d5d612f9aa1a8eb1bb431:app/src/main/java/pro/sketchware/activities/main/activities/MainActivity.java*/
 
         boolean hasStorageAccess = isStoragePermissionGranted();
         if (!hasStorageAccess) {
