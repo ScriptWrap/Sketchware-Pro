@@ -18,8 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
-import com.sketchware.remod.databinding.ManageLocallibrariesBinding;
-import com.sketchware.remod.databinding.ViewItemLocalLibBinding;
+import pro.sketchware.databinding.ManageLocallibrariesBinding;
+import pro.sketchware.databinding.ViewItemLocalLibBinding;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,8 +27,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-import mod.SketchwareUtil;
-import mod.agus.jcoderz.lib.FileUtil;
+import pro.sketchware.utility.SketchwareUtil;
+import pro.sketchware.utility.FileUtil;
 import mod.hey.studios.build.BuildSettings;
 import mod.hey.studios.util.Helper;
 import mod.jbk.util.AddMarginOnApplyWindowInsetsListener;

@@ -6,10 +6,10 @@ import android.text.TextUtils;
 import android.util.Pair;
 import android.widget.Toast;
 
-import com.besome.sketch.SketchApplication;
+import pro.sketchware.SketchApplication;
 import com.besome.sketch.beans.ComponentBean;
 import com.google.gson.Gson;
-import com.sketchware.remod.R;
+import pro.sketchware.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,8 +21,8 @@ import java.util.Optional;
 
 import a.a.a.Lx;
 import a.a.a.xB;
-import mod.SketchwareUtil;
-import mod.agus.jcoderz.lib.FileUtil;
+import pro.sketchware.utility.SketchwareUtil;
+import pro.sketchware.utility.FileUtil;
 import mod.hey.studios.util.Helper;
 import mod.jbk.util.OldResourceIdMapper;
 //responsible code :

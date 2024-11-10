@@ -1,6 +1,6 @@
 package mod.hey.studios.project.custom_blocks;
 
-import static mod.SketchwareUtil.getDip;
+import static pro.sketchware.utility.SketchwareUtil.getDip;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.besome.sketch.beans.BlockBean;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.sketchware.remod.databinding.ViewUsedCustomBlocksBinding;
+import pro.sketchware.databinding.ViewUsedCustomBlocksBinding;
 
 import java.util.ArrayList;
 

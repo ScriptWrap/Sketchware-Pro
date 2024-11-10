@@ -1,6 +1,6 @@
 package mod.hey.studios.moreblock.importer;
 
-import static mod.SketchwareUtil.getDip;
+import static pro.sketchware.utility.SketchwareUtil.getDip;
 
 import android.app.Activity;
 import android.view.View;
@@ -13,13 +13,13 @@ import android.widget.SearchView;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.besome.sketch.beans.MoreBlockCollectionBean;
-import com.sketchware.remod.R;
-import com.sketchware.remod.databinding.ManageCollectionPopupImportMoreBlockListItemBinding;
+import pro.sketchware.R;
+import pro.sketchware.databinding.ManageCollectionPopupImportMoreBlockListItemBinding;
 
 import java.util.ArrayList;
 
 import a.a.a.aB;
-import mod.SketchwareUtil;
+import pro.sketchware.utility.SketchwareUtil;
 import mod.hey.studios.util.Helper;
 import mod.jbk.util.BlockUtil;
 

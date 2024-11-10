@@ -23,8 +23,10 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
@@ -38,8 +40,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 import a.a.a.lC;
 import a.a.a.yB;
-import mod.SketchwareUtil;
-import mod.agus.jcoderz.lib.FileUtil;
+import pro.sketchware.utility.SketchwareUtil;
+import pro.sketchware.utility.FileUtil;
 import mod.hey.studios.editor.manage.block.ExtraBlockInfo;
 import mod.hey.studios.editor.manage.block.v2.BlockLoader;
 import mod.hey.studios.project.custom_blocks.CustomBlocksManager;
@@ -381,10 +383,19 @@ public class BackupFactory {
         // Find custom blocks used and include them in the backup
         if (backupCustomBlocks) {
             CustomBlocksManager cbm = new CustomBlocksManager(sc_id);
-
-            ArrayList<ExtraBlockInfo> blocks = new ArrayList<>();
+            
+            Set<ExtraBlockInfo> blocks = new HashSet<>();
+            Set<String> block_names = new HashSet<>();
             for (BlockBean bean : cbm.getUsedBlocks()) {
-                blocks.add(BlockLoader.getBlockInfo(bean.opCode));
+                if (!block_names.contains(bean.opCode)) {
+                    block_names.add(bean.opCode);
+                    if (cbm.contains(bean.opCode)) {
+                        blocks.add(cbm.getExtraBlockInfo(bean.opCode));
+                    } else {
+                        var block = BlockLoader.getBlockInfo(bean.opCode);
+                        blocks.add(block);
+                    }
+                }
             }
 
             String json = new Gson().toJson(blocks);

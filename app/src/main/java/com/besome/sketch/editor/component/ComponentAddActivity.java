@@ -27,8 +27,8 @@ import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.FlexboxLayoutManager.LayoutParams;
 import com.google.android.flexbox.JustifyContent;
-import com.sketchware.remod.R;
-import com.sketchware.remod.databinding.LogicPopupAddComponentTempBinding;
+import pro.sketchware.R;
+import pro.sketchware.databinding.LogicPopupAddComponentTempBinding;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +42,7 @@ import a.a.a.jC;
 import a.a.a.mB;
 import a.a.a.uq;
 import a.a.a.wB;
-import mod.hasrat.lib.DebouncedClickListener;
+import pro.sketchware.lib.DebouncedClickListener;
 import mod.hey.studios.util.Helper;
 import mod.hilal.saif.components.ComponentsHandler;
 

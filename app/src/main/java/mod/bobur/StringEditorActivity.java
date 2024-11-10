@@ -1,5 +1,7 @@
 package mod.bobur;
 
+import static pro.sketchware.utility.XmlUtil.replaceXml;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,10 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.sketchware.remod.R;
-import com.sketchware.remod.databinding.StringEditorBinding;
-import com.sketchware.remod.databinding.StringEditorItemBinding;
-import com.sketchware.remod.databinding.ViewStringEditorAddBinding;
+import pro.sketchware.R;
+import pro.sketchware.databinding.StringEditorBinding;
+import pro.sketchware.databinding.StringEditorItemBinding;
+import pro.sketchware.databinding.ViewStringEditorAddBinding;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -28,17 +30,19 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import a.a.a.aB;
-import mod.SketchwareUtil;
-import mod.agus.jcoderz.lib.FileUtil;
+import pro.sketchware.utility.SketchwareUtil;
+import pro.sketchware.utility.FileUtil;
 import mod.hey.studios.code.SrcCodeEditor;
 import mod.hey.studios.code.SrcCodeEditorLegacy;
 import mod.hilal.saif.activities.tools.ConfigActivity;
+import pro.sketchware.utility.XmlUtil;
 
 public class StringEditorActivity extends AppCompatActivity {
 
@@ -46,6 +50,7 @@ public class StringEditorActivity extends AppCompatActivity {
     private MaterialAlertDialogBuilder dialog;
     private StringEditorBinding binding;
     private RecyclerViewAdapter adapter;
+    private boolean isComingFromAnotherActivity = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +62,7 @@ public class StringEditorActivity extends AppCompatActivity {
 
     private void initialize() {
         setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         binding.toolbar.setNavigationOnClickListener(_v -> onBackPressed());
         dialog = new MaterialAlertDialogBuilder(this);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -65,10 +70,19 @@ public class StringEditorActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        convertXmlToListMap(FileUtil.readFile(getIntent().getStringExtra("content")), listmap);
-        adapter = new RecyclerViewAdapter(listmap);
-        binding.recyclerView.setAdapter(adapter);
         super.onResume();
+        if (!isComingFromAnotherActivity) {
+            convertXmlToListMap(FileUtil.readFile(getIntent().getStringExtra("content")), listmap);
+            adapter = new RecyclerViewAdapter(listmap);
+            binding.recyclerView.setAdapter(adapter);
+        }
+        isComingFromAnotherActivity = false;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isComingFromAnotherActivity = true;
     }
 
     @Override
@@ -84,16 +98,20 @@ public class StringEditorActivity extends AppCompatActivity {
                     .create()
                     .show();
         }
+        if (listmap.isEmpty() && (! FileUtil.readFile(getIntent().getStringExtra("content")).contains("</resources>"))) {
+            XmlUtil.saveXml(getIntent().getStringExtra("content"),convertListMapToXml(listmap));
+
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         menu.add(0, 0, 0, "Add a new string")
-                .setIcon(R.drawable.ic_add_24)
+                .setIcon(R.drawable.ic_mtrl_add)
                 .setShowAsAction(android.view.MenuItem.SHOW_AS_ACTION_ALWAYS);
 
         menu.add(0, 1, 0, "Save")
-                .setIcon(R.drawable.save_icon_24px)
+                .setIcon(R.drawable.ic_mtrl_save)
                 .setShowAsAction(android.view.MenuItem.SHOW_AS_ACTION_ALWAYS);
 
         if (!checkDefaultString(getIntent().getStringExtra("content"))) {
@@ -111,14 +129,14 @@ public class StringEditorActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
         int id = item.getItemId();
         if (id == 1) {
-            saveXml();
+            XmlUtil.saveXml(getIntent().getStringExtra("content"),convertListMapToXml(listmap));
         } else if (id == 0) {
             addStringDialog();
         } else if (id == 2) {
             convertXmlToListMap(FileUtil.readFile(getDefaultStringPath(Objects.requireNonNull(getIntent().getStringExtra("content")))), listmap);
             adapter.notifyDataSetChanged();
         } else if (id == 3) {
-            saveXml();
+            XmlUtil.saveXml(getIntent().getStringExtra("content"),convertListMapToXml(listmap));
             Intent intent = new Intent();
             if (ConfigActivity.isLegacyCeEnabled()) {
                 intent.setClass(getApplicationContext(), SrcCodeEditorLegacy.class);
@@ -133,7 +151,7 @@ public class StringEditorActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void convertXmlToListMap(final String xmlString, final ArrayList<HashMap<String, Object>> listmap) {
+    public static void convertXmlToListMap(final String xmlString, final ArrayList<HashMap<String, Object>> listmap) {
         try {
             listmap.clear();
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -162,6 +180,15 @@ public class StringEditorActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean isXmlStringsContains(ArrayList<HashMap<String, Object>> listMap, String value) {
+        for (Map<String, Object> map : listMap) {
+            if (map.containsKey("key") && value.equals(map.get("key"))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String convertListMapToXml(final ArrayList<HashMap<String, Object>> listmap) {
@@ -194,18 +221,6 @@ public class StringEditorActivity extends AppCompatActivity {
                 .replace("\r", "&#13;");
     }
 
-    public String replaceXml(final String text) {
-        return text.replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "")
-                .replace("\r", "")
-                .replace("\n", "")
-                .replace(" ", "")
-                .replace("\t", "");
-    }
-
-    public void saveXml() {
-        FileUtil.writeFile(getIntent().getStringExtra("content"), convertListMapToXml(listmap));
-        SketchwareUtil.toast("Save completed", Toast.LENGTH_SHORT);
-    }
 
     public void addStringDialog() {
         aB dialog = new aB(this);
@@ -244,12 +259,13 @@ public class StringEditorActivity extends AppCompatActivity {
                 return;
             }
         }
+        listmap.add(map);
         adapter.notifyItemInserted(listmap.size() - 1);
     }
 
     public boolean checkDefaultString(final String path) {
         File file = new File(path);
-        String parentFolder = file.getParentFile().getName();
+        String parentFolder = Objects.requireNonNull(file.getParentFile()).getName();
         return parentFolder.equals("values");
     }
 

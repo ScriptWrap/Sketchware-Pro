@@ -1,6 +1,6 @@
 package com.besome.sketch.editor;
 
-import static mod.SketchwareUtil.getDip;
+import static pro.sketchware.utility.SketchwareUtil.getDip;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -64,7 +64,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
-import com.sketchware.remod.R;
+import pro.sketchware.R;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -110,7 +110,7 @@ import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.component.Magnifier;
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme;
 import io.github.rosemoe.sora.widget.schemes.SchemeDarcula;
-import mod.hasrat.menu.ExtraMenuBean;
+import pro.sketchware.menu.ExtraMenuBean;
 import mod.hey.studios.editor.view.IdGenerator;
 import mod.hey.studios.moreblock.ReturnMoreblockManager;
 import mod.hey.studios.moreblock.importer.MoreblockImporterDialog;
@@ -1224,12 +1224,20 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     }
 
     public final void b(Ss ss) {
-        Zx zx = new Zx(this, (ss.getArgValue() == null || ss.getArgValue().toString().length() <= 0 || ss.getArgValue().toString().indexOf("0xFF") != 0) ? 0 : Color.parseColor(ss.getArgValue().toString().replace("0xFF", "#")), true, false);
-        zx.a(i -> {
-            if (i == 0) {
-                a(ss, "Color.TRANSPARENT");
-            } else {
-                a(ss, String.format("0x%08X", i & (Color.WHITE)));
+        Zx zx = new Zx(this, (ss.getArgValue() == null || ss.getArgValue().toString().length() <= 0 || ss.getArgValue().toString().indexOf("0xFF") != 0) ? 0 : Color.parseColor(ss.getArgValue().toString().replace("0xFF", "#")), true, false, B);
+        zx.a(new Zx.b() {
+            @Override
+            public void a(int var1) {
+                if (var1 == 0) {
+                    LogicEditorActivity.this.a(ss, "Color.TRANSPARENT");
+                } else {
+                    LogicEditorActivity.this.a(ss, String.format("0x%08X", var1 & (Color.WHITE)));
+                }
+            }
+
+            @Override
+            public void a(String var1, int var2) {
+                LogicEditorActivity.this.a(ss, "getResources().getColor(R.color." + var1 + ")");
             }
         });
         zx.showAtLocation(ss, Gravity.CENTER, 0, 0);

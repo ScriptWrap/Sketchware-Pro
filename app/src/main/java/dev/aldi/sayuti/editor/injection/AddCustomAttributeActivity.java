@@ -15,16 +15,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
-import com.sketchware.remod.R;
-import com.sketchware.remod.databinding.AddCustomAttributeBinding;
-import com.sketchware.remod.databinding.CustomDialogAttributeBinding;
+import pro.sketchware.R;
+import pro.sketchware.databinding.AddCustomAttributeBinding;
+import pro.sketchware.databinding.CustomDialogAttributeBinding;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
-import mod.SketchwareUtil;
-import mod.agus.jcoderz.lib.FileUtil;
+import pro.sketchware.utility.SketchwareUtil;
+import pro.sketchware.utility.FileUtil;
 import mod.hey.studios.util.Helper;
 import mod.remaker.util.ThemeUtils;
 import mod.remaker.view.CustomAttributeView;
@@ -35,6 +36,8 @@ public class AddCustomAttributeActivity extends AppCompatActivity {
 
     private String activityInjectionsFilePath = "";
     private String widgetType = "";
+    
+    private static final String ATTR_REGEX_TEMPLATE = "(android|app)\\s*:\\s*%s";
 
     private AddCustomAttributeBinding binding;
 
@@ -113,9 +116,11 @@ public class AddCustomAttributeActivity extends AppCompatActivity {
     private class CustomAdapter extends BaseAdapter {
 
         private final ArrayList<HashMap<String, Object>> injections;
+        private final ArrayList<HashMap<String, Object>> filtered;
 
         public CustomAdapter(ArrayList<HashMap<String, Object>> arrayList) {
-            injections = filterInjections(arrayList);
+            injections = arrayList;
+            filtered = filterInjections(injections);
         }
 
         private ArrayList<HashMap<String, Object>> filterInjections(ArrayList<HashMap<String, Object>> arrayList) {
@@ -130,12 +135,12 @@ public class AddCustomAttributeActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return injections.size();
+            return filtered.size();
         }
 
         @Override
         public HashMap<String, Object> getItem(int position) {
-            return injections.get(position);
+            return filtered.get(position);
         }
 
         @Override
@@ -162,15 +167,22 @@ public class AddCustomAttributeActivity extends AppCompatActivity {
             attributeView.getImageView().setOnClickListener(v -> {
                 PopupMenu popupMenu = new PopupMenu(AddCustomAttributeActivity.this, attributeView.getImageView());
                 popupMenu.getMenu().add(Menu.NONE, 0, Menu.NONE, "Edit");
-                popupMenu.getMenu().add(Menu.NONE, 1, Menu.NONE, "Delete");
+                if (!hasAttribute("layout_height", value) || !hasAttribute("layout_width", value)) {
+                    popupMenu.getMenu().add(Menu.NONE, 1, Menu.NONE, "Delete");
+                }
                 popupMenu.setOnMenuItemClickListener(item -> {
+                    int originalPosition = injections.indexOf(filtered.get(position));
+
                     if (item.getItemId() == 0) {
-                        dialog("edit", position);
+                        dialog("edit", originalPosition);
                     } else {
-                        injections.remove(position);
-                        FileUtil.writeFile(activityInjectionsFilePath, new Gson().toJson(injections));
-                        notifyDataSetChanged();
-                        SketchwareUtil.toast("Deleted successfully");
+                        if (originalPosition != -1) {
+                            injections.remove(originalPosition);
+                            filtered.remove(position);
+                            FileUtil.writeFile(activityInjectionsFilePath, new Gson().toJson(injections));
+                            notifyDataSetChanged();
+                            SketchwareUtil.toast("Deleted successfully");
+                        }
                     }
                     return true;
                 });
@@ -178,6 +190,11 @@ public class AddCustomAttributeActivity extends AppCompatActivity {
             });
 
             return attributeView;
+        }
+
+        private boolean hasAttribute(String attrName, String attribute) {
+            String regex = String.format(ATTR_REGEX_TEMPLATE, Pattern.quote(attrName));
+            return Pattern.compile(regex).matcher(attribute).find();
         }
     }
 }

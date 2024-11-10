@@ -26,8 +26,8 @@ import androidx.transition.TransitionManager;
 
 import com.besome.sketch.lib.base.BaseAppCompatActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.sketchware.remod.R;
-import com.sketchware.remod.databinding.MyprojectSettingBinding;
+import pro.sketchware.R;
+import pro.sketchware.databinding.MyprojectSettingBinding;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -51,8 +51,8 @@ import a.a.a.oB;
 import a.a.a.wB;
 import a.a.a.wq;
 import a.a.a.yB;
-import mod.SketchwareUtil;
-import mod.hasrat.control.VersionDialog;
+import pro.sketchware.utility.SketchwareUtil;
+import pro.sketchware.control.VersionDialog;
 import mod.hey.studios.util.Helper;
 import mod.hey.studios.util.ProjectFile;
 import mod.hilal.saif.activities.tools.ConfigActivity;
@@ -378,10 +378,20 @@ public class MyProjectSettingActivity extends BaseAppCompatActivity implements V
 
     private void pickColor(View anchorView, int colorIndex) {
         Zx zx = new Zx(this, projectThemeColors[colorIndex], false, false);
-        zx.a(pickedColor -> {
-            projectThemeColors[colorIndex] = pickedColor;
-            syncThemeColors();
-        });
+        zx.a((new Zx.b() {
+            @Override
+            public void a(int var1) {
+                projectThemeColors[colorIndex] = var1;
+                syncThemeColors();
+            }
+
+            @Override
+            public void a(String var1, int var2) {
+                projectThemeColors[colorIndex] = var2;
+                syncThemeColors();
+            }
+         }
+        ));
         zx.showAtLocation(anchorView, Gravity.CENTER, 0, 0);
     }
 

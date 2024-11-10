@@ -26,11 +26,11 @@ import com.github.angads25.filepicker.view.FilePickerDialog;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import com.sketchware.remod.R;
-import com.sketchware.remod.databinding.DialogCreateNewFileLayoutBinding;
-import com.sketchware.remod.databinding.DialogInputLayoutBinding;
-import com.sketchware.remod.databinding.ManageFileBinding;
-import com.sketchware.remod.databinding.ManageJavaItemHsBinding;
+import pro.sketchware.R;
+import pro.sketchware.databinding.DialogCreateNewFileLayoutBinding;
+import pro.sketchware.databinding.DialogInputLayoutBinding;
+import pro.sketchware.databinding.ManageFileBinding;
+import pro.sketchware.databinding.ManageJavaItemHsBinding;
 
 import com.besome.sketch.lib.base.BaseAppCompatActivity;
 
@@ -38,10 +38,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import mod.SketchwareUtil;
-import mod.agus.jcoderz.lib.FilePathUtil;
-import mod.agus.jcoderz.lib.FileResConfig;
-import mod.agus.jcoderz.lib.FileUtil;
+import pro.sketchware.utility.SketchwareUtil;
+import pro.sketchware.utility.FilePathUtil;
+import pro.sketchware.utility.FileResConfig;
+import pro.sketchware.utility.FileUtil;
 import mod.hey.studios.util.Helper;
 import mod.jbk.util.AddMarginOnApplyWindowInsetsListener;
 
@@ -320,7 +320,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
             }
 
             binding.title.setText(Uri.parse(path).getLastPathSegment());
-            binding.icon.setImageResource(FileUtil.isDirectory(path) ? R.drawable.ic_folder_24 : R.drawable.ic_file_24);
+            binding.icon.setImageResource(FileUtil.isDirectory(path) ? R.drawable.ic_mtrl_folder : R.drawable.ic_mtrl_file);
 
             binding.more.setOnClickListener(v -> {
                 PopupMenu menu = new PopupMenu(ManageNativelibsActivity.this, v);

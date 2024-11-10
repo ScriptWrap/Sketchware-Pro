@@ -16,13 +16,13 @@ import androidx.viewbinding.ViewBinding;
 
 import com.besome.sketch.beans.AdTestDeviceBean;
 import com.besome.sketch.beans.ProjectLibraryBean;
-import com.sketchware.remod.R;
-import com.sketchware.remod.databinding.ManageLibraryAdmobPreviewBinding;
-import com.sketchware.remod.databinding.ManageLibrarySettingAdmobTestDeviceItemBinding;
+import pro.sketchware.R;
+import pro.sketchware.databinding.ManageLibraryAdmobPreviewBinding;
+import pro.sketchware.databinding.ManageLibrarySettingAdmobTestDeviceItemBinding;
 
 import a.a.a.Uu;
 import a.a.a.gB;
-import mod.hasrat.lib.CommonViewBindingAdapter;
+import pro.sketchware.lib.base.BaseViewBindingAdapter;
 import mod.hey.studios.util.Helper;
 
 public class ReviewStepView extends LinearLayout implements Uu {
@@ -129,7 +129,7 @@ public class ReviewStepView extends LinearLayout implements Uu {
         adapter.setItems(projectLibraryBean.testDevices);
     }
 
-    public static class TestDevicesAdapter extends CommonViewBindingAdapter<AdTestDeviceBean> {
+    public static class TestDevicesAdapter extends BaseViewBindingAdapter<AdTestDeviceBean> {
 
         @NonNull
         @Override

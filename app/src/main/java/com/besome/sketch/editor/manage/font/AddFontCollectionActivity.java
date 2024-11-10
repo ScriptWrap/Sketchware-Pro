@@ -9,14 +9,14 @@ import android.view.View;
 
 import com.besome.sketch.beans.ProjectResourceBean;
 import com.besome.sketch.lib.base.BaseDialogActivity;
-import com.sketchware.remod.R;
-import com.sketchware.remod.databinding.ManageFontAddBinding;
+import pro.sketchware.R;
+import pro.sketchware.databinding.ManageFontAddBinding;
 
 import java.io.File;
 import java.util.ArrayList;
 
 import a.a.a.Np;
-import a.a.a.WB2;
+import pro.sketchware.lib.validator.WB2;
 import a.a.a.bB;
 import a.a.a.uq;
 import a.a.a.wq;

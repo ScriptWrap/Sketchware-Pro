@@ -1,5 +1,8 @@
 package dev.aldi.sayuti.block;
 
+import static mod.bobur.StringEditorActivity.convertXmlToListMap;
+import static mod.bobur.StringEditorActivity.isXmlStringsContains;
+
 import android.util.Pair;
 
 import com.besome.sketch.beans.ComponentBean;
@@ -16,12 +19,14 @@ import a.a.a.jC;
 import a.a.a.jq;
 import a.a.a.kq;
 import a.a.a.Ox;
-import mod.SketchwareUtil;
+import pro.sketchware.utility.SketchwareUtil;
 import mod.agus.jcoderz.beans.ViewBeans;
-import mod.agus.jcoderz.lib.FileResConfig;
+import pro.sketchware.utility.FilePathUtil;
+import pro.sketchware.utility.FileResConfig;
+import pro.sketchware.utility.FileUtil;
 import mod.elfilibustero.sketch.lib.utils.CustomVariableUtil;
-import mod.hasrat.blocks.ExtraBlocks;
-import mod.hasrat.control.logic.LogicClickListener;
+import pro.sketchware.blocks.ExtraBlocks;
+import pro.sketchware.control.logic.LogicClickListener;
 import mod.hey.studios.editor.view.IdGenerator;
 import mod.hey.studios.moreblock.ReturnMoreblockManager;
 import mod.hilal.saif.activities.tools.ConfigActivity;
@@ -389,6 +394,23 @@ public class ExtraPaletteBlock {
         }
 
         switch (paletteId) {
+            case -1:
+                String filePath = FileUtil.getExternalStorageDir().concat("/.sketchware/data/").concat(sc_id.concat("/files/resource/values/strings.xml"));
+                ArrayList<HashMap<String, Object>> StringsListMap = new ArrayList<>();
+                convertXmlToListMap(FileUtil.readFileIfExist(filePath), StringsListMap);
+
+
+                logicEditor.a("s", "getResString");
+                logicEditor.a("Saved Res Strings :", 0xff555555);
+                if (!isXmlStringsContains(StringsListMap, "app_name")) {
+                    logicEditor.a("s", "getAppName");
+                }
+
+                for (HashMap<String, Object> map : StringsListMap) {
+                    String key = map.get("key").toString();
+                    logicEditor.a("s", "S98ZCS" + key);
+                }
+                return;
             case 0:
                 logicEditor.b("Add variable", "variableAdd");
                 logicEditor.b("Add custom variable", "variableAddNew", clickListener);

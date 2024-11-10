@@ -6,15 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
-import com.sketchware.remod.R;
-import com.sketchware.remod.databinding.DialogKeystoreCredentialsBinding;
+import pro.sketchware.R;
+import pro.sketchware.databinding.DialogKeystoreCredentialsBinding;
 
 import java.io.File;
 import java.util.LinkedList;
 
 import a.a.a.aB;
 import a.a.a.wq;
-import mod.SketchwareUtil;
+import pro.sketchware.utility.SketchwareUtil;
 import mod.hey.studios.util.Helper;
 
 public class GetKeyStoreCredentialsDialog {

@@ -17,13 +17,13 @@ import android.widget.Toast;
 
 import com.besome.sketch.lib.base.BaseAppCompatActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.sketchware.remod.R;
+import pro.sketchware.R;
 
 import java.io.File;
 
 import a.a.a.GB;
 import a.a.a.xB;
-import mod.SketchwareUtil;
+import pro.sketchware.utility.SketchwareUtil;
 
 public class CollectErrorActivity extends BaseAppCompatActivity {
     @SuppressLint("SetTextI18n")

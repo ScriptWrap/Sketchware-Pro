@@ -13,14 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sketchware.remod.R;
-import com.sketchware.remod.databinding.MakeBlockLayoutBinding;
+import pro.sketchware.R;
+import pro.sketchware.databinding.MakeBlockLayoutBinding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
-import mod.hasrat.lib.BaseTextWatcher;
+import pro.sketchware.lib.base.BaseTextWatcher;
 import mod.hey.studios.moreblock.MoreblockValidator;
 import mod.hey.studios.moreblock.ReturnMoreblockManager;
 import mod.hey.studios.util.Helper;

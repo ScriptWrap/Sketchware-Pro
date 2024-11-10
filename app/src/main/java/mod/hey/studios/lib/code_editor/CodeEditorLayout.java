@@ -28,14 +28,14 @@ import android.widget.NumberPicker;
 import android.widget.PopupMenu;
 import android.widget.ScrollView;
 
-import com.sketchware.remod.R;
+import pro.sketchware.R;
 
 import java.util.List;
 import java.util.regex.Matcher;
 
 import a.a.a.Lx;
 import a.a.a.wB;
-import mod.SketchwareUtil;
+import pro.sketchware.utility.SketchwareUtil;
 
 /**
  * A lightweight Code Editor with syntax highlighting, auto indentation, word wrap and lines.

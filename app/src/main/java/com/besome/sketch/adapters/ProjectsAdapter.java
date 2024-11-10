@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.besome.sketch.export.ExportProjectActivity;
-import com.besome.sketch.fragments.ProjectsFragment;
+import pro.sketchware.activities.main.fragments.projects.ProjectsFragment;
 import com.besome.sketch.projects.MyProjectSettingActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.sketchware.remod.R;
-import com.sketchware.remod.databinding.BottomSheetProjectOptionsBinding;
-import com.sketchware.remod.databinding.MyprojectsItemBinding;
+import pro.sketchware.R;
+import pro.sketchware.databinding.BottomSheetProjectOptionsBinding;
+import pro.sketchware.databinding.MyprojectsItemBinding;
 
 import java.io.File;
 import java.util.ArrayList;
